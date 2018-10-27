@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="./style/style.css">
+  <meta charset="utf-8"/>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="box1">
+        <div class="menu">
+             <label for="menu_bar">Filter</label>
+             <input type="radio" name="radio" id="menu_bar" class="accordion" />
+             <ul id="link">
+                <li><a id="grayscale">Grayscale</a></li>
+                <li><a id="reversecolor">ReverseColor</a></li>
+                <li><a id="threshold">Threshold</a></li>
+                <li><a id="gamma">Gamma</a></li>
+                <li><a id="blur">Blur</a></li>
+                <li><a id="sharpness">Sharpness</a></li>
+             </ul>
+        </div>
+        </div>
+        <div class="box2">
+      <canvas id="canvas"></canvas>
+        </div>
+    </div>
+  <script type="text/javascript" src="build/main.js"></script>
+</body>
+</html>

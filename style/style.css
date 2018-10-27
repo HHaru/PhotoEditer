@@ -1,0 +1,58 @@
+.wrapper {
+    display: flex;
+}
+.box1 {
+    width: 240px;
+}
+
+.box2 {
+    margin-left: 12px;
+}
+.menu {
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 0;
+   }
+   .menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #000000;
+    line-height: 1;
+   }
+   .menu label {
+    display: block;
+    position: relative;
+    margin: 0 0 2px 0;
+    padding: 12px;
+    line-height: 1;
+    color: #ffffff;
+    background: #1b2538;
+    cursor: pointer;
+   }
+   .menu label::before {
+    position: absolute;
+    content: '▼';
+    color: #ffffff;
+    right: 0.5em;
+    top: 25%;
+   }
+   .menu input {
+    display: none;
+   }
+   .menu ul {
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    list-style: none;
+   }
+   .menu li {
+    overflow-y: hidden;
+    max-height: 0;
+    transition: all 0.5s;
+   }
+   
+   #menu_bar:checked ~ #link li {
+       max-height: 46px;
+    opacity: 1;
+   }

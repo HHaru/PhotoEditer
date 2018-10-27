@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+    "target": "es5",                         
+    "module": "es2015",   
+    "sourceMap": true,
+    "noEmitOnError": true, // コンパイルに失敗したときにjsを出力しない
+    "noUnusedParameters": true, // 使用していない引数を検出する
+    "noImplicitReturns": true, // 戻り値が異なっていたときは検出
+    "moduleResolution": "node",
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+    },
+}
