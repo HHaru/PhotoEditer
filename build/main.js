@@ -114,7 +114,7 @@ var Canvas = /** @class */ (function () {
     // 画像を表示する
     Canvas.prototype.drawImage = function (type) {
         var img = new Image();
-        img.src = 'file:///Users/haruki/Desktop/PhotoEditer/assets/img0.jpg';
+        img.src = 'file:///Users/haruki/Desktop/PhotoEditer/assets/imgdemo.jpg';
         img.onload = function () {
             this.setWidth(600);
             this.setHeight(600);
@@ -218,9 +218,9 @@ var Canvas = /** @class */ (function () {
             output.data[i + 1] = g;
             output.data[i + 2] = b;
             output.data[i + 3] = input[i + 3];
-            //キャンバスに出力する
-            this.context.putImageData(output, 0, 0);
         }
+        //キャンバスに出力する
+        this.context.putImageData(output, 0, 0);
     };
     //ガンマ補正の結果を得る
     Canvas.prototype.evaluateGamma = function (color) {
@@ -359,9 +359,9 @@ var Canvas = /** @class */ (function () {
             output.data[i + 1] = g;
             output.data[i + 2] = b;
             output.data[i + 3] = input[i + 3];
-            // キャンバスに出力する
-            this.context.putImageData(output, 0, 0);
         }
+        // キャンバスに出力する
+        this.context.putImageData(output, 0, 0);
     };
     return Canvas;
 }());
@@ -428,7 +428,7 @@ document.getElementById("gamma").onclick = function () {
 document.getElementById("blur").onclick = function () {
     canvas.drawImage(_FilterType__WEBPACK_IMPORTED_MODULE_1__["FilterType"].Blur);
 };
-document.getElementById("sharp").onclick = function () {
+document.getElementById("sharpness").onclick = function () {
     canvas.drawImage(_FilterType__WEBPACK_IMPORTED_MODULE_1__["FilterType"].Sharpness);
 };
 

@@ -30,6 +30,6 @@ document.getElementById("blur").onclick = function(){
     canvas.drawImage(FilterType.Blur);
 };
 
-document.getElementById("sharp").onclick = function(){
+document.getElementById("sharpness").onclick = function(){
     canvas.drawImage(FilterType.Sharpness);
 };
