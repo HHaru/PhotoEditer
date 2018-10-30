@@ -117,6 +117,14 @@ var Canvas = /** @class */ (function () {
     Canvas.prototype.getContextData = function () {
         return this.context;
     };
+    // バックアップを設定する
+    Canvas.prototype.setBackup = function () {
+        this.backup = this.context.getImageData(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
+    };
+    // バックアップから復旧する
+    Canvas.prototype.restoreFromBackup = function () {
+        this.context.putImageData(this.backup, 0, 0);
+    };
     // 画像ファイルを読み込み時の処理
     Canvas.prototype.onInputImage = function () {
         this.file.addEventListener("change", function (event) {
@@ -130,12 +138,14 @@ var Canvas = /** @class */ (function () {
                     this.setWidth(600);
                     this.setHeight(600);
                     this.getContextData().drawImage(img, 0, 0);
+                    this.setBackup();
                 }.bind(this);
             }.bind(this);
         }.bind(this));
     };
     // 画像を表示する
     Canvas.prototype.drawImage = function (type) {
+        this.restoreFromBackup();
         if (type == _FilterType__WEBPACK_IMPORTED_MODULE_0__["FilterType"].Grayscale) {
             this.convertGrayscale();
         }

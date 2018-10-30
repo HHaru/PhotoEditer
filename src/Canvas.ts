@@ -35,6 +35,16 @@ export class Canvas {
         return this.context;
     }
 
+    // バックアップを設定する
+    public setBackup(): void {
+        this.backup = this.context.getImageData(0, 0, this.canvas.clientWidth,this.canvas.clientHeight);
+    }
+
+    // バックアップから復旧する
+    public restoreFromBackup(): void {
+        this.context.putImageData(this.backup, 0, 0);
+    }
+
     // 画像ファイルを読み込み時の処理
     public onInputImage(): void {
         this.file.addEventListener("change", function (event) {
@@ -48,6 +58,7 @@ export class Canvas {
                     this.setWidth(600);
                     this.setHeight(600);
                     this.getContextData().drawImage(img, 0, 0);
+                    this.setBackup();
                 }.bind(this);
             }.bind(this);
         }.bind(this));
@@ -55,6 +66,7 @@ export class Canvas {
 
     // 画像を表示する
     public drawImage(type: FilterType): void {
+        this.restoreFromBackup();
         if (type == FilterType.Grayscale) {
             this.convertGrayscale();
         } else if (type == FilterType.ReveseColor) {
