@@ -3,13 +3,6 @@ import { FilterType } from "./FilterType";
 
 let canvas = new Canvas(500, 500);
 
-
-function main() {
-    canvas.drawImage(FilterType.None);
-}
-
-main();
-
 document.getElementById("grayscale").onclick = function(){
     canvas.drawImage(FilterType.Grayscale);
 };
@@ -33,3 +26,5 @@ document.getElementById("blur").onclick = function(){
 document.getElementById("sharpness").onclick = function(){
     canvas.drawImage(FilterType.Sharpness);
 };
+
+document.getElementById("file");

@@ -14,6 +14,11 @@ export class Canvas {
     protected context: CanvasRenderingContext2D;
     // コンテキストデータ
     protected contextData: ImageData;
+    // ファイル
+    protected file: HTMLElement;
+    //バックアップ
+    protected backup: ImageData;
+
     
     // コンストラクタ
     constructor(aWidth: number, aHeight: number) {
@@ -21,31 +26,48 @@ export class Canvas {
         this.canvas.width = aWidth;
         this.canvas.height = aHeight;
         this.context = this.canvas.getContext("2d");
+        this.file = document.getElementById("file");
+        this.onInputImage();
+    }
+
+    // コンテキストデータを取得する
+    public getContextData(): CanvasRenderingContext2D {
+        return this.context;
+    }
+
+    // 画像ファイルを読み込み時の処理
+    public onInputImage(): void {
+        this.file.addEventListener("change", function (event) {
+            var files = (<HTMLInputElement>event.target).files;
+            var reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+            reader.onload = function () { 
+                var img = new Image();
+                img.src = <string>reader.result;
+                img.onload = function() {
+                    this.setWidth(600);
+                    this.setHeight(600);
+                    this.getContextData().drawImage(img, 0, 0);
+                }.bind(this);
+            }.bind(this);
+        }.bind(this));
     }
 
     // 画像を表示する
     public drawImage(type: FilterType): void {
-        var img = new Image();
-        img.src = '../PhotoEditer/assets/imgdemo.jpg';
-        img.onload = function () {
-            this.setWidth(600);
-            this.setHeight(600);
-            this.context.drawImage(img, 0, 0);
-            if (type == FilterType.Grayscale){
-                this.convertGrayscale();
-            }else if (type == FilterType.ReveseColor){
-                this.reverseColor();
-            }else if (type == FilterType.Threshold){
-                this.convertThreshold();
-            }else if (type == FilterType.Blur){
-                this.applyBlur();
-            }else if (type == FilterType.Sharpness){
-                this.applySharpFilter();
-            }else if (type == FilterType.Gamma){
-                this.applyGammaFilter();
-            }
-        
-        }.bind(this);
+        if (type == FilterType.Grayscale) {
+            this.convertGrayscale();
+        } else if (type == FilterType.ReveseColor) {
+            this.reverseColor();
+        } else if (type == FilterType.Blur) {
+            this.applyBlur();
+        } else if (type == FilterType.Threshold) {
+            this.convertThreshold();
+        } else if (type == FilterType.Sharpness) {
+            this.applySharpFilter();
+        } else if (type == FilterType.Gamma) {
+            this.applyGammaFilter();
+        }
     }
 
     // 画像を保存する
