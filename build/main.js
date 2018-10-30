@@ -114,7 +114,7 @@ var Canvas = /** @class */ (function () {
     // 画像を表示する
     Canvas.prototype.drawImage = function (type) {
         var img = new Image();
-        img.src = '/assets/imgdemo.jpg';
+        img.src = '../PhotoEditer/assets/imgdemo.jpg';
         img.onload = function () {
             this.setWidth(600);
             this.setHeight(600);

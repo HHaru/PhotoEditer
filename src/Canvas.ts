@@ -26,7 +26,7 @@ export class Canvas {
     // 画像を表示する
     public drawImage(type: FilterType): void {
         var img = new Image();
-        img.src = '/assets/imgdemo.jpg';
+        img.src = '../PhotoEditer/assets/imgdemo.jpg';
         img.onload = function () {
             this.setWidth(600);
             this.setHeight(600);
